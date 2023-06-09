@@ -1,12 +1,11 @@
 version: '2.1'
 
 orbs:
-  aws-cli: circleci/aws-cli@4
+  aws-cli: circleci/aws-cli@4.0.0
 
 jobs:
   s3ls:
-    machine:
-      image: ubuntu-2204:current
+    executor: aws-cli/default
     steps:
       - aws-cli/assume_role_with_web_identity:
           role_arn: $AWS_ROLE_ARN
