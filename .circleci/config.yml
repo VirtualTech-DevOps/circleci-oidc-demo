@@ -7,6 +7,7 @@ jobs:
   s3ls:
     executor: aws-cli/default
     steps:
+      - aws-cli/setup
       - aws-cli/assume_role_with_web_identity:
           role_arn: $AWS_ROLE_ARN
       - run: aws s3 ls s3://
