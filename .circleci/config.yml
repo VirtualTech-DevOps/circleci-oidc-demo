@@ -8,13 +8,12 @@ jobs:
     machine:
       image: ubuntu-2204:current
     steps:
-      - checkout
       - aws-cli/assume_role_with_web_identity:
           role_arn: $AWS_ROLE_ARN
-      - run: aws s3 ls
+      - run: aws s3 ls s3://
 
 workflows:
-  oidc:
+  oidc-test:
     jobs:
       - s3ls:
           context: aws-oidc
