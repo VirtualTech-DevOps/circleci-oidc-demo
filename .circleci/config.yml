@@ -15,5 +15,4 @@ jobs:
 workflows:
   oidc-test:
     jobs:
-      - s3ls:
-          context: aws-oidc
+      - s3ls
