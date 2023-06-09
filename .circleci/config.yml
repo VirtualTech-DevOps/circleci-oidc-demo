@@ -1,0 +1,20 @@
+version: '2.1'
+
+orbs:
+  aws-cli: circleci/aws-cli@4
+
+jobs:
+  s3ls:
+    docker:
+      - image: cimg/aws:2023.06
+    steps:
+      - checkout
+      - aws-cli/assume_role_with_web_identity:
+          role_arn: $AWS_ROLE_ARN
+      - run: aws s3 ls
+
+workflows:
+  oidc:
+    jobs:
+      - s3ls:
+          context: aws-oidc
