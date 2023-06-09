@@ -10,7 +10,7 @@ provider "aws" {
 resource "aws_iam_openid_connect_provider" "circleci" {
   url             = local.id_provider
   thumbprint_list = [data.tls_certificate.circleci.certificates[0].sha1_fingerprint]
-  client_id_list  = ["sts.amazonaws.com"]
+  client_id_list  = [var.circleci_org_id]
 }
 
 data "tls_certificate" "circleci" {
